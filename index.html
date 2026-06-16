@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngTech - 數位遊牧與全球教育旅行</title>
+    <!-- 引入外部 CSS 檔案，適用於 VS Code 專案架構 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入適合水彩優雅風格的中文與英文 Google 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ==========================================
+         1. 導覽列區塊 (Navbar Section)
+         用意：提供全站導覽選單，並支援行動裝置響應式切換
+         修改範圍：可修改選單文字、Logo 圖片路徑或新增連結
+         ========================================== -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="logo-area">
+                <!-- LOGO 修改範圍：請將 src 改為您的 EngTech logo 圖檔路徑 (例如: EngTech_logo.jpg) -->
+                <img src="EngTech_logo.jpg" alt="EngTech Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('logo-placeholder').style.display='block';">
+                <span id="logo-placeholder" class="logo-text-fallback" style="display:none;">EngTech</span>
+                <span class="logo-subtext">數位遊牧 × 國際教育</span>
+            </a>
+            
+            <!-- 行動裝置漢堡選單按鈕 -->
+            <button class="menu-toggle" id="menuToggle" aria-label="切換選單">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- 網頁選單項目 -->
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#home" class="nav-link active">首頁</a></li>
+                    <li><a href="#courses" class="nav-link">課程</a></li>
+                    <li><a href="#partners" class="nav-link">合作夥伴</a></li>
+                    <li><a href="#register" class="nav-btn">線上報名</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- ==========================================
+         2. 主視覺首頁區塊 (Hero Section)
+         用意：網站門面，建立「數位遊牧與教育旅遊」的第一印象
+         修改範圍：可自由修改大標題、副標題、描述文字與按鈕跳轉目標
+         ========================================== -->
+    <section id="home" class="hero-section">
+        <!-- 水彩風格背景渲染層，於 CSS 中定義 -->
+        <div class="watercolor-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="travel-badge">✈️ Digital Nomad Life</div>
+                <h1>邊旅行，邊學習<br><span class="watercolor-text">開啟你的數位遊牧旅程</span></h1>
+                <p class="hero-desc">EngTech 專為渴望自由與成長的你設計。我們將國際「教育課程」與「全球旅遊景點介紹」完美結合，讓世界成為你的無邊界辦公室與生活教室。</p>
+                <div class="hero-buttons">
+                    <a href="#courses" class="btn btn-primary">探索遊牧課程</a>
+                    <a href="#register" class="btn btn-secondary">預約線上報名</a>
+                </div>
+            </div>
+            <div class="hero-image-box">
+                <!-- 此處圖片可自由替換為象徵數位遊牧或教育旅遊的精美意象圖 -->
+                <div class="hero-card-visual">
+                    <span class="floating-icon map-icon">📍</span>
+                    <span class="floating-icon code-icon">💻</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         3. 課程與旅遊景點介紹區塊 (Courses & Destinations)
+         用意：展示教育課程與景點介紹的核心內容
+         修改範圍：可複製 .course-card 架構來增加課程數量，修改圖片背景、標題、景點與敘述
+         ========================================== -->
+    <section id="courses" class="courses-section">
+        <div class="section-title-area">
+            <span class="sub-title">EDUCATION & TRAVEL</span>
+            <h2>精選全球遊牧課程 與 景點走讀</h2>
+            <p>在最美的風景裡，修煉獨立開發、網頁設計與跨國商務溝通的核心科技能力</p>
+        </div>
+        
+        <div class="courses-grid">
+            <!-- 課程卡片 1 -->
+            <div class="course-card">
+                <!-- 圖片修改範圍：可透過 CSS class (c-img-1) 更改背景圖，或直接在此處改用 <img> 標籤 -->
+                <div class="card-img-holder c-img-1">
+                    <div class="course-tag">科技開發</div>
+                </div>
+                <div class="card-info">
+                    <h3>清邁數位遊牧工作坊：前端美學與基礎架構</h3>
+                    <p class="attraction-info">⛳ 景點介紹：古城尼曼路、素帖山雙龍寺、清邁創意共創空間</p>
+                    <p class="course-detail">專為初學者設計的網頁開發課程，帶您進駐亞洲數位遊牧聖地清邁，早晨在水彩般寧靜的咖啡廳學習 HTML/CSS/JavaScript，下午走讀文化古蹟。</p>
+                    <div class="card-bottom">
+                        <span class="price-tag">熱門推薦</span>
+                        <a href="#register" class="learn-more-link">填表洽詢 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 課程卡片 2 -->
+            <div class="course-card">
+                <div class="card-img-holder c-img-2">
+                    <div class="course-tag">國際商務</div>
+                </div>
+                <div class="card-info">
+                    <h3>峇里島跨國溝通與數位行銷實戰</h3>
+                    <p class="attraction-info">⛳ 景點介紹：烏布梯田、海神廟、倉古衝浪海灘</p>
+                    <p class="course-detail">結合在地國際創客社群，深入探討跨國遠端工作溝通技巧與美學行銷。在熱帶海灘景致中，完成您個人的品牌定位作品集。</p>
+                    <div class="card-bottom">
+                        <span class="price-tag">講師好評</span>
+                        <a href="#register" class="learn-more-link">填表洽詢 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 課程卡片 3 -->
+            <div class="course-card">
+                <div class="card-img-holder c-img-3">
+                    <div class="course-tag">網頁美學</div>
+                </div>
+                <div class="card-info">
+                    <h3>京都水彩視覺與 UI/UX 思考營</h3>
+                    <p class="attraction-info">⛳ 景點介紹：清水寺、嵐山竹林、鴨川河畔走讀</p>
+                    <p class="course-detail">將傳統日式美學、優雅水彩風格融入現代數位介面設計。漫步於京都歷史景點，採集色彩靈感，轉化為具備響應式高質感的數位網頁。</p>
+                    <div class="card-bottom">
+                        <span class="price-tag">席次限量</span>
+                        <a href="#register" class="learn-more-link">填表洽詢 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         4. 合作夥伴區塊 (Partners Section)
+         用意：建立品牌信任度，標示學校、企業或空間合作聯盟
+         修改範圍：可更換文字內容，或將 partner-logo 區塊替換為各合作單位的圖標圖片
+         ========================================== -->
+    <section id="partners" class="partners-section">
+        <div class="partners-inner">
+            <h3>OUR PARTNERS / 合作夥伴</h3>
+            <p>EngTech 與全球頂尖共享空間、教育機構及國際旅行社聯合締結</p>
+            <div class="partners-flex">
+                <div class="partner-logo"><span>🏛️</span> 國際共創聯盟</div>
+                <div class="partner-logo"><span>✈️</span> 探索世界旅行社</div>
+                <div class="partner-logo"><span>🌐</span> 數位遊牧全球社群</div>
+                <div class="partner-logo"><span>🎓</span> 前沿科技實驗學院</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         5. 線上報名表單區塊 (Registration Form Section)
+         用意：收集潛在學員的聯絡人、電話、Email 資訊
+         修改範圍：可增刪 input 欄位，表單動作可對接 GitHub/後端 API 或由 script.js 進行控制
+         ========================================== -->
+    <section id="register" class="register-section">
+        <div class="register-box">
+            <div class="register-header">
+                <h2>ONLINE REGISTRATION / 線上報名</h2>
+                <p>請填寫以下資訊，完成對遊牧學習行程的預約諮詢，我們將有專人與您聯絡。</p>
+            </div>
+            
+            <!-- 表單實體 (嚴格依要求包含：聯絡人、電話、Email) -->
+            <form id="nomadRegisterForm" class="styled-form">
+                <div class="input-row">
+                    <label for="userName">聯絡人姓名 <span class="required-star">*</span></label>
+                    <input type="text" id="userName" placeholder="請輸入您的完整姓名" required>
+                </div>
+
+                <div class="input-row">
+                    <label for="userPhone">聯絡電話 <span class="required-star">*</span></label>
+                    <input type="tel" id="userPhone" placeholder="請輸入聯絡電話 (例：0912345678)" required>
+                </div>
+
+                <div class="input-row">
+                    <label for="userEmail">電子郵件 Email <span class="required-star">*</span></label>
+                    <input type="email" id="userEmail" placeholder="example@engtech.com" required>
+                </div>
+
+                <div class="input-row">
+                    <label for="selectPlan">意向諮詢行程</label>
+                    <select id="selectPlan">
+                        <option value="chiangmai">清邁數位遊牧工作坊</option>
+                        <option value="bali">峇里島跨國商務實戰</option>
+                        <option value="kyoto">京都水彩視覺UI/UX營</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">提交報名諮詢</button>
+            </form>
+            
+            <!-- JavaScript 提交成功後的提示訊息區域 -->
+            <div id="submissionMessage" class="alert-box hidden"></div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         6. 頁尾資訊區塊 (Footer Section)
+         用意：標示版權、工作室名稱、社群連結及特定署名資訊
+         修改範圍：已依照要求精準標註指定資訊，可調整排版與增添其他網站說明
+         ========================================== -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="f-logo">EngTech</span>
+                <p>開啟屬於你的無邊界學習與工作新時代</p>
+            </div>
+            <!-- 指定的 footer 資訊內容區 -->
+            <div class="footer-info-credits">
+                <p class="credit-item">Studio: <span>@EngTech_Mavis_Studio</span></p>
+                <p class="credit-item">Copyright: <span>@Right</span></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EngTech Education & Travel. 專屬 GitHub Deployment 網頁範本</p>
+        </div>
+    </footer>
+
+    <!-- 引入外部 JavaScript 檔案，處理互動事件 -->
+    <script src="script.js"></script>
+</body>
+</html>

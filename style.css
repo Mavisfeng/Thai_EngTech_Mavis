@@ -1,0 +1,735 @@
+/* ==========================================================================
+   EngTech 數位遊牧網站專屬樣式表 (style.css)
+   風格主題：優雅輕盈的「粉藍色水彩風格 (Pastel Blue Watercolor Style)」
+   設計規格：全面支援手機、平板、桌機之 RWD 響應式佈局，適合 GitHub Pages 部署
+   ========================================================================== */
+
+/* ==========================================
+   1. 基礎重設與全站變數定義
+   修改範圍：若想更換主題藍色的深淺，可直接在此修改 CSS 變數值
+   ========================================== */
+:root {
+    /* 水彩粉藍核心色調 */
+    --watercolor-blue-light: #e6f0fa;  /* 輕透水彩粉藍底色 */
+    --watercolor-blue-medium: #b9d7ea; /* 中度水彩粉藍層 */
+    --watercolor-blue-dark: #4b86b4;   /* 主題深藍色(文字與主按鈕) */
+    --accent-pink-soft: #f7d6c8;       /* 點綴性粉色，與粉藍形成優雅對比 */
+    
+    /* 中性底色與文字色 */
+    --text-main: #2b3a4a;              /* 主內文深色，避免純黑造成視覺刺眼 */
+    --text-muted: #657786;             /* 輔助性淡文字色 */
+    --pure-white: #ffffff;
+    --card-shadow: 0 10px 30px rgba(75, 134, 180, 0.08); /* 柔和的水彩感淡藍投影 */
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* 啟用全站導覽平滑錨點滾動 */
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text-main);
+    background-color: #fafcfd; /* 水彩畫紙感微白背景 */
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. 導覽列樣式 (Navbar Layout)
+   修改範圍：可更換導覽列高度、背景透明度或懸停底線顏色
+   ========================================== */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px); /* 現代化毛玻璃效果 */
+    border-bottom: 1px solid rgba(185, 215, 234, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+.logo-img {
+    height: 40px; /* Logo 圖片高度適配 */
+    object-fit: contain;
+}
+
+.logo-text-fallback {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--watercolor-blue-dark);
+    letter-spacing: 1px;
+}
+
+.logo-subtext {
+    font-size: 13px;
+    color: var(--text-muted);
+    background-color: var(--watercolor-blue-light);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+/* 導覽選單排版 */
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 4px;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--watercolor-blue-dark);
+}
+
+/* 建立水彩暈染感下劃線效果 */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--watercolor-blue-medium);
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: var(--pure-white);
+    background-color: var(--watercolor-blue-dark);
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(75, 134, 180, 0.25);
+    transition: var(--transition-smooth);
+}
+
+.nav-btn:hover {
+    background-color: #3a72a0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(75, 134, 180, 0.35);
+}
+
+/* 行動選單漢堡按鈕 (預設隱藏) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    height: 2px;
+    width: 100%;
+    background-color: var(--text-main);
+    transition: var(--transition-smooth);
+}
+
+/* ==========================================
+   3. 首頁區塊樣式 (Hero Layout)
+   修改範圍：可調整水彩漸層色、文字大小或自訂裝飾色塊
+   ========================================== */
+.hero-section {
+    padding: 90px 20px;
+    position: relative;
+    background-color: var(--watercolor-blue-light);
+    /* 運用多重漸層模擬水彩在紙張上淡雅暈染與不規則融合的藝術美感 */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(185, 215, 234, 0.6) 0%, transparent 45%),
+        radial-gradient(circle at 90% 80%, rgba(247, 214, 200, 0.5) 0%, transparent 40%);
+    border-bottom: 1px solid rgba(185, 215, 234, 0.3);
+    overflow: hidden;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.travel-badge {
+    display: inline-block;
+    background-color: var(--pure-white);
+    color: var(--watercolor-blue-dark);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    color: var(--text-main);
+}
+
+/* 藝術水彩風格標題加亮 */
+.watercolor-text {
+    font-family: 'Caveat', 'Noto Sans TC', sans-serif;
+    color: var(--watercolor-blue-dark);
+    position: relative;
+    display: inline-block;
+}
+
+.watercolor-text::before {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: -5px;
+    width: 100%;
+    height: 12px;
+    background-color: rgba(185, 215, 234, 0.5);
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.hero-desc {
+    font-size: 17px;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+    max-width: 540px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* 通用按鈕封裝 */
+.btn {
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: var(--transition-smooth);
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--watercolor-blue-dark);
+    color: var(--pure-white);
+    box-shadow: 0 5px 15px rgba(75, 134, 180, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #3a72a0;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--text-main);
+    border: 1px solid var(--watercolor-blue-medium);
+}
+
+.btn-secondary:hover {
+    background-color: var(--pure-white);
+    transform: translateY(-2px);
+}
+
+/* 右側水彩風插畫方塊 */
+.hero-card-visual {
+    width: 100%;
+    height: 360px;
+    background: linear-gradient(135deg, #ffffff 0%, var(--watercolor-blue-light) 100%);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* 不規則水彩有機體形狀 */
+    box-shadow: var(--card-shadow);
+    position: relative;
+    animation: morphing 8s ease-in-out infinite alternate;
+}
+
+@keyframes morphing {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    100% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%; }
+}
+
+.floating-icon {
+    position: absolute;
+    background: var(--pure-white);
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    font-size: 24px;
+}
+
+.map-icon { top: 20%; left: 15%; animation: floatItem 3s ease-in-out infinite; }
+.code-icon { bottom: 25%; right: 20%; animation: floatItem 3s ease-in-out infinite 1.5s; }
+
+@keyframes floatItem {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ==========================================
+   4. 課程與景點介紹區塊 (Courses Layout)
+   修改範圍：可調整網格欄數(Grid Columns)、卡片圓角、陰影深淺
+   ========================================== */
+.courses-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 20px;
+}
+
+.section-title-area {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.sub-title {
+    font-size: 13px;
+    color: var(--watercolor-blue-dark);
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-title-area h2 {
+    font-size: 32px;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.section-title-area p {
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+/* 網格自適應佈局 */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 35px;
+}
+
+.course-card {
+    background-color: var(--pure-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(185, 215, 234, 0.2);
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(75, 134, 180, 0.15);
+}
+
+/* 卡片圖片容器：使用水彩漸層做為底襯模擬畫布效果 */
+.card-img-holder {
+    height: 200px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+/* 利用漸層模擬粉藍、粉紅交融的水彩視覺底色 */
+.c-img-1 { background: linear-gradient(135deg, var(--watercolor-blue-medium) 0%, var(--accent-pink-soft) 100%); }
+.c-img-2 { background: linear-gradient(135deg, var(--accent-pink-soft) 0%, var(--watercolor-blue-light) 100%); }
+.c-img-3 { background: linear-gradient(135deg, var(--watercolor-blue-medium) 0%, #d4eaf7 100%); }
+
+.course-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--watercolor-blue-dark);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.card-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-info h3 {
+    font-size: 19px;
+    margin-bottom: 12px;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.attraction-info {
+    font-size: 13.5px;
+    color: var(--watercolor-blue-dark);
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.course-detail {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(185, 215, 234, 0.2);
+    padding-top: 15px;
+}
+
+.price-tag {
+    font-size: 13px;
+    background-color: rgba(247, 214, 200, 0.4);
+    color: #c07d65;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.learn-more-link {
+    text-decoration: none;
+    color: var(--watercolor-blue-dark);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* ==========================================
+   5. 合作夥伴區塊樣式 (Partners Layout)
+   修改範圍：可變更內距或增減項目的對齊方式
+   ========================================== */
+.partners-section {
+    background-color: #f2f7fc;
+    padding: 60px 20px;
+    border-top: 1px solid rgba(185, 215, 234, 0.3);
+    border-bottom: 1px solid rgba(185, 215, 234, 0.3);
+}
+
+.partners-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.partners-inner h3 {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.partners-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.partner-logo {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--pure-white);
+    padding: 12px 24px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+/* ==========================================
+   6. 表單區塊樣式 (Registration Form Layout)
+   修改範圍：可更換欄位框顏色、聚焦(Focus)時的高亮顏色、填寫提示大小
+   ========================================== */
+.register-section {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #fafcfd 0%, var(--watercolor-blue-light) 100%);
+}
+
+.register-box {
+    max-width: 650px;
+    margin: 0 auto;
+    background-color: var(--pure-white);
+    border-radius: 20px;
+    padding: 45px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(185, 215, 234, 0.2);
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.register-header h2 {
+    font-size: 26px;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.register-header p {
+    color: var(--text-muted);
+    font-size: 14.5px;
+}
+
+.styled-form .input-row {
+    margin-bottom: 22px;
+}
+
+.styled-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14.5px;
+}
+
+.required-star {
+    color: #e06d53;
+}
+
+/* 輸入框統一样式（無銳利直角，採圓潤優雅風格） */
+.styled-form input[type="text"],
+.styled-form input[type="tel"],
+.styled-form input[type="email"],
+.styled-form select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 1px solid var(--watercolor-blue-medium);
+    border-radius: 10px;
+    background-color: #fafcfd;
+    color: var(--text-main);
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.styled-form input:focus,
+.styled-form select:focus {
+    border-color: var(--watercolor-blue-dark);
+    background-color: var(--pure-white);
+    box-shadow: 0 0 0 4px rgba(75, 134, 180, 0.15);
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--watercolor-blue-dark);
+    color: var(--pure-white);
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(75, 134, 180, 0.2);
+    transition: var(--transition-smooth);
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #3a72a0;
+    transform: translateY(-1px);
+}
+
+/* 表單反饋訊息樣式 */
+.alert-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14.5px;
+    text-align: center;
+}
+.alert-box.success { background-color: #e3f7ed; color: #1e7e4e; border: 1px solid #a3e4c4; }
+.alert-box.error { background-color: #fbece8; color: #b93c21; border: 1px solid #f3c2b7; }
+.hidden { display: none; }
+
+/* ==========================================
+   7. 頁尾樣式 (Footer Layout)
+   修改範圍：包含指定的 @EngTech_Mavis_Studio 與 @Right 資訊
+   ========================================== */
+.site-footer {
+    background-color: #1e2d3d;
+    color: #e1e8ed;
+    padding: 60px 20px 20px 20px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.f-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--watercolor-blue-light);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    color: #8899a6;
+}
+
+/* 依照指示精準渲染指定資訊 */
+.footer-info-credits {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.credit-item {
+    font-size: 14.5px;
+    color: #ccd6dd;
+}
+
+.credit-item span {
+    color: var(--watercolor-blue-medium);
+    font-weight: 500;
+    background-color: rgba(255,255,255,0.05);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 20px auto 0 auto;
+    text-align: center;
+    font-size: 13px;
+    color: #8899a6;
+}
+
+/* ==========================================
+   8. RWD 響應式佈局手機優化 (Media Queries)
+   用意：確保在手機版、平板、寬螢幕均可完美排列
+   ========================================== */
+@media (max-width: 992px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-content p {
+        margin: 0 auto 35px auto;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .hero-card-visual {
+        max-width: 450px;
+        height: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* 在手機版啟用漢堡按鈕 */
+    }
+
+    .nav-menu {
+        display: none; /* 預設隱藏下拉選單 */
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--pure-white);
+        border-bottom: 1px solid rgba(185, 215, 234, 0.4);
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    /* JavaScript 驅動開啟狀態 */
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .nav-menu ul li {
+        text-align: center;
+    }
+
+    .nav-btn {
+        display: block;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .register-box {
+        padding: 25px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
